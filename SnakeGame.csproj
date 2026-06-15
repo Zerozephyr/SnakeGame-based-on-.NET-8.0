@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!-- 排除 LeaderboardAPI 子目录，避免与主项目混淆编译 -->
+  <ItemGroup>
+    <Compile Remove="LeaderboardAPI\**" />
+    <EmbeddedResource Remove="LeaderboardAPI\**" />
+    <None Remove="LeaderboardAPI\**" />
+  </ItemGroup>
+
+  <!-- 资源文件复制到输出目录 -->
+  <ItemGroup>
+    <Content Include="Themes\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Themes\%(Filename)%(Extension)</Link>
+    </Content>
+    <Content Include="Sounds\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Sounds\%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
+
+</Project>
